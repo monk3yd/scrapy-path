@@ -4,7 +4,7 @@ import scrapy
 
 class SpecialOffersSpider(scrapy.Spider):
     name = 'special_offers'
-    allowed_domains = ['www.web.archive.org']
+    allowed_domains = ['www.web.archive.org', 'web.archive.org']
     start_urls = ['https://web.archive.org/web/20190225123327/https://www.tinydeal.com/specials.html']
 
     def parse(self, response):
@@ -15,3 +15,8 @@ class SpecialOffersSpider(scrapy.Spider):
                 "special_price": item.xpath(".//div/span[@class='productSpecialPrice fl']/text()").get(),
                 "normal_price": item.xpath(".//div/span[@class='normalprice fl']/text()").get()
             }
+
+        next_page = response.xpath("//a[@class='nextPage']/@href").get()
+
+        if next_page:
+            yield scrapy.Request(url=next_page, callback=self.parse)
