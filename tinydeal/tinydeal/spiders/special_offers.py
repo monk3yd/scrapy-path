@@ -8,14 +8,10 @@ class SpecialOffersSpider(scrapy.Spider):
     start_urls = ['https://web.archive.org/web/20190225123327/https://www.tinydeal.com/specials.html']
 
     def parse(self, response):
-        items = response.xpath("//li[@class='productListing-even']")
-        for item in items:
-            item_title = item.xpath(".//a[@class='p_box_title']/text()").get()
-            item_special_price = item.xpath(".//div/span[@class='productSpecialPrice fl']/text()").get()
-            item_normal_price = item.xpath(".//div/span[@class='normalprice fl']/text()").get()
-
+        for item in response.xpath("//ul[@class='productlisting-ul']/div/li"):
             yield {
-                "item_title": item_title,
-                "item_special_price": item_special_price,
-                "item_normal_price": item_normal_price
+                "title": item.xpath(".//a[@class='p_box_title']/text()").get(),
+                "url": response.urljoin(item.xpath(".//a[@class='p_box_title']/@href").get()),
+                "special_price": item.xpath(".//div/span[@class='productSpecialPrice fl']/text()").get(),
+                "normal_price": item.xpath(".//div/span[@class='normalprice fl']/text()").get()
             }
