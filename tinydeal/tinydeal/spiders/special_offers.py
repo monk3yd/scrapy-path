@@ -11,7 +11,11 @@ class SpecialOffersSpider(scrapy.Spider):
         items = response.xpath("//li[@class='productListing-even']")
         for item in items:
             item_title = item.xpath(".//a[@class='p_box_title']/text()").get()
-            # item_price = item.xpath("//span[@")
+            item_special_price = item.xpath(".//div/span[@class='productSpecialPrice fl']/text()").get()
+            item_normal_price = item.xpath(".//div/span[@class='normalprice fl']/text()").get()
+
             yield {
-                "item": item_title
+                "item_title": item_title,
+                "item_special_price": item_special_price,
+                "item_normal_price": item_normal_price
             }
