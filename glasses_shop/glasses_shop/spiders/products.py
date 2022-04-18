@@ -12,9 +12,12 @@ class ProductsSpider(scrapy.Spider):
         for product in products:
             product_url = product.xpath(".//div[@class='product-img-outer']/a[1]/@href").get()
             product_image_link = product.xpath(".//div[@class='product-img-outer']/a[1]/img/@data-src").get()
+            product_name = product.xpath(".//div[@class='p-title']/a[1]/@title").get()
+            product_price = product.xpath(".//div[@class='p-price']/div/span/text()").get()
+
             yield {
                 "url": product_url,
-                "image": product_image_link
+                "image": product_image_link,
+                "name": product_name,
+                "price": product_price,
             }
-            # product_name =
-            # product_price =
