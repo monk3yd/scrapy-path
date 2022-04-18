@@ -7,9 +7,12 @@ from scrapy.spiders import CrawlSpider, Rule
 class BestMoviesSpider(CrawlSpider):
     name = 'best_movies'
     allowed_domains = ['imdb.com']
-    start_urls = ['http://imdb.com/']
+    start_urls = ['https://imdb.com']
 
     rules = (
+        Rule(LinkExtractor(allow=r'Items/'), callback='parse_item', follow=True),
+        # Rule(LinkExtractor(deny=r'Items/'), callback='parse_item', follow=True),
+        Rule(LinkExtractor(restrict_xpaths=r'Items/'), callback='parse_item', follow=True),
         Rule(LinkExtractor(allow=r'Items/'), callback='parse_item', follow=True),
     )
 
