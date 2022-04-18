@@ -11,6 +11,7 @@ class BooksSpider(CrawlSpider):
 
     rules = (
         Rule(LinkExtractor(restrict_xpaths="//h3/a"), callback='parse_item', follow=True),
+        Rule(LinkExtractor(restrict_xpaths="//li[@class='next']/a")),
     )
 
     def parse_item(self, response):
