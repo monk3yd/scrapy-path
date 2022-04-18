@@ -7,6 +7,7 @@ class ProductsSpider(scrapy.Spider):
     allowed_domains = ['www.glassesshop.com', 'glassesshop.com']
     start_urls = ['https://www.glassesshop.com/bestsellers']
 
+
     def parse(self, response):
         products = response.xpath("//div[@id='product-lists']/div")
         for product in products:
@@ -21,3 +22,8 @@ class ProductsSpider(scrapy.Spider):
                 "name": product_name,
                 "price": product_price,
             }
+
+        next_page = response.xpath("//a[@class='page-link' and @rel='next']/@href").get()
+
+        if next_page:
+            yield scrapy.Request(url=next_page, callback=self.parse)
