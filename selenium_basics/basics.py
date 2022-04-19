@@ -34,3 +34,5 @@ search_input.send_keys("My User Agent" + Keys.ENTER)
 
 # search_btn = browser.find_element(By.ID, "search_button_homepage")
 # search_btn.click()
+
+print(browser.page_source)
