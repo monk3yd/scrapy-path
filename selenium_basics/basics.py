@@ -11,9 +11,7 @@ from pathlib import Path
 # Initialize
 chrome_options = Options()
 chrome_options.add_argument("start-maximized")
-
-# chrome_options.headless = True
-# chrome_options.add_argument("--headless")
+chrome_options.headless = True
 
 chrome_path = Path(__file__).with_name("./chromedriver")
 
@@ -36,5 +34,3 @@ search_input.send_keys("My User Agent" + Keys.ENTER)
 
 # search_btn = browser.find_element(By.ID, "search_button_homepage")
 # search_btn.click()
-
-search_input.send_keys(Keys.ENTER)
