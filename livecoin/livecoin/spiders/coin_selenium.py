@@ -22,6 +22,7 @@ class CoinSpiderSelenium(scrapy.Spider):
         chrome_options.headless = True
 
         browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+        browser.set_window_size(1920, 1080)
 
         stealth(browser,
                 languages=["en-US", "en"],
