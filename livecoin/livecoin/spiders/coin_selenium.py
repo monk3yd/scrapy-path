@@ -35,7 +35,7 @@ class CoinSpiderSelenium(scrapy.Spider):
         # Open URL in browser
         browser.get("https://web.archive.org/web/20200116052415/https://www.livecoin.net/en")
 
-        rur_tab = browser.find_elements(By.CLASS, "filterPanelItem___2z5Gb")
+        rur_tab = browser.find_elements(By.CLASS_NAME, "filterPanelItem___2z5Gb")
         rur_tab[4].click()
 
         self.html = browser.page_source
