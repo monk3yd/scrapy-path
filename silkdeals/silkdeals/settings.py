@@ -55,7 +55,6 @@ ROBOTSTXT_OBEY = True
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_selenium.SeleniumMiddleware': 800
 }
-
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -91,7 +90,8 @@ DOWNLOADER_MIDDLEWARES = {
 
 # SELENIUM
 from shutil import which
- 
+
 SELENIUM_DRIVER_NAME = 'chrome'
 SELENIUM_DRIVER_EXECUTABLE_PATH = which('./chromedriver')
-SELENIUM_DRIVER_ARGUMENTS=['--headless']
+SELENIUM_DRIVER_ARGUMENTS=['--window-size=1920,1080','--headless']  
+# SELENIUM_MAX_INSTANCES = 16 # if not set, will default to match CONCURRENT_REQUESTS 
