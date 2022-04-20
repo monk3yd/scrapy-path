@@ -23,12 +23,12 @@ class ExampleSpider(scrapy.Spider):
     def start_request(self):
         yield SeleniumRequest(
             url='https://duckduckgo.com',
-            callback=self.parse_result,
+            callback=self.parse,
             wait_time=3,
             screenshot=True,
         )
 
-    def parse_result(self, response):
+    def parse(self, response):
         # inspect_response(response, self)
         img = response.meta["screenshot"]
         # print(f"This is the meta image: {img}")
