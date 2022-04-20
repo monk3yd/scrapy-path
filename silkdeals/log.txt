@@ -1,0 +1,51 @@
+INFO: Scrapy 1.6.0 started (bot: silkdeals)
+INFO: Versions: lxml 4.6.3.0, libxml2 2.9.12, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 21.2.0, Python 3.8.13 (default, Mar 28 2022, 11:38:47) - [GCC 7.5.0], pyOpenSSL 22.0.0 (OpenSSL 1.1.1n  15 Mar 2022), cryptography 35.0.0, Platform Linux-5.13.0-39-generic-x86_64-with-glibc2.17
+INFO: Overridden settings: {'BOT_NAME': 'silkdeals', 'NEWSPIDER_MODULE': 'silkdeals.spiders', 'ROBOTSTXT_OBEY': True, 'SPIDER_MODULES': ['silkdeals.spiders']}
+INFO: Telnet Password: 69c032e488729452
+INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+DEBUG: POST http://localhost:46797/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "pageLoadStrategy": "normal", "goog:chromeOptions": {"extensions": [], "args": ["--window-size=1920,1080", "--headless"]}}}, "desiredCapabilities": {"browserName": "chrome", "pageLoadStrategy": "normal", "goog:chromeOptions": {"extensions": [], "args": ["--window-size=1920,1080", "--headless"]}}}
+DEBUG: Starting new HTTP connection (1): localhost:46797
+DEBUG: http://localhost:46797 "POST /session HTTP/1.1" 200 752
+DEBUG: Finished Request
+INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy_selenium.SeleniumMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+INFO: Enabled item pipelines:
+[]
+INFO: Spider opened
+INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+INFO: Telnet console listening on 127.0.0.1:6023
+INFO: Closing spider (finished)
+DEBUG: DELETE http://localhost:46797/session/76588bacfef14e21d6717c5700b26602 {}
+DEBUG: http://localhost:46797 "DELETE /session/76588bacfef14e21d6717c5700b26602 HTTP/1.1" 200 14
+DEBUG: Finished Request
+INFO: Dumping Scrapy stats:
+{'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2022, 4, 20, 1, 2, 24, 342519),
+ 'log_count/DEBUG': 7,
+ 'log_count/INFO': 9,
+ 'memusage/max': 60465152,
+ 'memusage/startup': 60465152,
+ 'start_time': datetime.datetime(2022, 4, 20, 1, 2, 24, 340606)}
+INFO: Spider closed (finished)
