@@ -104,3 +104,6 @@ SELENIUM_DRIVER_ARGUMENTS = ['-window-size=1920,1080','-headless']
 
 # SELENIUM_DRIVER_NAME = 'chrome'
 # SELENIUM_DRIVER_ARGUMENTS = ['--window-size=1920,1080','--headless']
+
+
+FEED_EXPORT_ENCODING = "utf-8"
