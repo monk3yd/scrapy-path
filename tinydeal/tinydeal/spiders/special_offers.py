@@ -5,7 +5,7 @@ import scrapy
 class SpecialOffersSpider(scrapy.Spider):
     name = 'special_offers'
     allowed_domains = ['www.web.archive.org', 'web.archive.org']
-    start_urls  = ["https://web.archive.org/web/20190225123327/https://www.tinydeal.com/specials.html"]
+    start_urls = ["https://web.archive.org/web/20190225123327/https://www.tinydeal.com/specials.html"]
 
     def start_request(self):
         yield scrapy.Request(
@@ -13,7 +13,7 @@ class SpecialOffersSpider(scrapy.Spider):
                 callback=self.parse,
                 headers={
                     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36"
-                } 
+                }
             )
 
     def parse(self, response):

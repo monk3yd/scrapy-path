@@ -42,7 +42,6 @@ class CoinSpiderSelenium(scrapy.Spider):
         self.html = browser.page_source
         browser.quit()
 
-
     def parse(self, response):
         resp = Selector(text=self.html)
         for currency in resp.xpath("//div[contains(@class, 'ReactVirtualized__Table__row tableRow___3EtiS ')]"):
