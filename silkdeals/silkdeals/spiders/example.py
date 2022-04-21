@@ -22,18 +22,18 @@ class ExampleSpider(scrapy.Spider):
 
     def parse(self, response):
         # Proof of work
-        # img = response.meta["screenshot"]
         # with open("screenshot.png", "wb") as file:
-        #     file.write(img)
+        #     file.write(response.meta["screenshot"])
 
         browser = response.meta["driver"]
-
         search_input = browser.find_element(By.ID, "search_form_input_homepage")
         search_input.send_keys("Hello World" + Keys.ENTER)
+
         time.sleep(3)
+
         browser.save_screenshot("enter.png")
 
-        html = browser.page_source
+        html = browser.page_source  # When getting elements with selenium (line 29) the original response from SeleniumRequest is modified
         response_obj = Selector(text=html)
         links = response_obj.xpath("//div[@class='result__extras__url']/a")
         for link in links:

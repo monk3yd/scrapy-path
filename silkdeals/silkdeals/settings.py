@@ -90,8 +90,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # SCRAPY_SELENIUM_MODULE
 # Firefox
-from selenium.webdriver.firefox.service import Service
-from webdriver_manager.firefox import GeckoDriverManager
+# from selenium.webdriver.firefox.service import Service
+# from webdriver_manager.firefox import GeckoDriverManager
+
 SELENIUM_DRIVER_NAME = 'firefox'
 # SELENIUM_DRIVER_EXECUTABLE_PATH = Service(GeckoDriverManager().install())  # TODO
 SELENIUM_DRIVER_EXECUTABLE_PATH = "/usr/local/bin/geckodriver"
