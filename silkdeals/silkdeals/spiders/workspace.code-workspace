@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../selenium_basics"
+		},
+		{
+			"path": "../../../livecoin"
+		},
+		{
+			"path": "../../../tinydeal"
+		}
+	],
+	"settings": {}
+}

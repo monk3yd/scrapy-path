@@ -1,38 +1,57 @@
 # -*- coding: utf-8 -*-
 import logging
 import scrapy
+import time
+
+from scrapy.selector import Selector
 from scrapy.utils.log import configure_logging
-# from scrapy.shell import inspect_response
-from scrapy_selenium import SeleniumRequest
+
+from scrapy.shell import inspect_response
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+from webdriver_manager.chrome import ChromeDriverManager
+
+from selenium_stealth import stealth
 
 
 class ExampleSpider(scrapy.Spider):
-    name = 'example'
+    name = "example"
+    allowed_domains = ["www.duckduckgo.com", "duckduckgo.com"]
+    start_urls = ["https://duckduckgo.com"]
 
-    # allowed_domains = ['duckduckgo.com', 'www.duckduckgo.com']
-    # start_urls = ['https://duckduckgo.com']
+    def __init__(self):
+        # Output log to file
+        configure_logging(install_root_handler=False)
+        logging.basicConfig(
+            filename="scrapy_and_selenium_working_no_module.txt",
+            format="%(levelname)s: %(message)s",
+            level=logging.INFO,
+        )
 
-    # Output log to file
-    configure_logging(install_root_handler=False)
-    logging.basicConfig(
-        filename='log.txt',
-        format='%(levelname)s: %(message)s',
-        level=logging.INFO
-    )
+        chrome_options = Options()
+        chrome_options.add_argument("start_maximized")
+        chrome_options.headless = True
 
-    def start_request(self):
-        yield SeleniumRequest(
-            url='https://duckduckgo.com',
-            callback=self.parse,
-            wait_time=3,
-            screenshot=True,
+        service = Service(ChromeDriverManager().install())
+        self.browser = webdriver.Chrome(service=service, options=chrome_options)
+        self.browser.set_window_size(1920, 1080)
+
+        stealth(
+            self.browser,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True,
         )
 
     def parse(self, response):
-        # inspect_response(response, self)
-        img = response.meta["screenshot"]
-        # print(f"This is the meta image: {img}")
-
-        # Proof of work
-        with open("screenshot.png", "wb") as file:
-            file.write(img)
+        self.browser.get(url="https://duckduckgo.com")
+        time.sleep(3)
+        self.browser.save_screenshot("screenshot.png")
