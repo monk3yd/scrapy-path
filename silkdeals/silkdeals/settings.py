@@ -46,15 +46,15 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
+# SPIDER_MIDDLEWARES = {
 #    'silkdeals.middlewares.SilkdealsSpiderMiddleware': 543,
-#}
+# }
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#     'scrapy_selenium.SeleniumMiddleware': 800
-# }
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_selenium.SeleniumMiddleware': 800
+}
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -88,12 +88,19 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# SELENIUM
+# SCRAPY_SELENIUM_MODULE
+# Firefox
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
+SELENIUM_DRIVER_NAME = 'firefox'
+# SELENIUM_DRIVER_EXECUTABLE_PATH = Service(GeckoDriverManager().install())  # TODO
+SELENIUM_DRIVER_EXECUTABLE_PATH = "/usr/local/bin/geckodriver"
+SELENIUM_DRIVER_ARGUMENTS = ['-window-size=1920,1080','-headless']
+# SELENIUM_MAX_INSTANCES = 16 # if not set, will default to match CONCURRENT_REQUEST  # TODO with https://github.com/dylanwalker/better-scrapy-selenium
+
+# Chrome, make own branch # TODO
+# from selenium.webdriver.chrome.service import Service
 # from webdriver_manager.chrome import ChromeDriverManager
-# from shutil import which
 
 # SELENIUM_DRIVER_NAME = 'chrome'
-# SELENIUM_DRIVER_EXECUTABLE_PATH = ChromeDriverManager().install()
-# SELENIUM_DRIVER_EXECUTABLE_PATH = which('./chromedriver')
 # SELENIUM_DRIVER_ARGUMENTS = ['--window-size=1920,1080','--headless']
-# SELENIUM_MAX_INSTANCES = 16 # if not set, will default to match CONCURRENT_REQUEST
