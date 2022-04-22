@@ -33,20 +33,24 @@ class MongodbPipeline(object):
 class SQLlitePipeline(object):
 
     def open_spider(self, spider):
-        # Create db and table
+        # Create and connect to db
         self.connection = sqlite3.connect("imdb.db")
         self.db = self.connection.cursor()
-        self.db.execute('''
-            CREATE TABLE best_movies(
-                title TEXT,
-                year TEXT,
-                duration TEXT,
-                genre TEXT,
-                rating TEXT,
-                movie_url TEXT
-            );
-        ''')
-        self.connection.commit()
+        # Create table
+        try:
+            self.db.execute('''
+                CREATE TABLE best_movies(
+                    title TEXT,
+                    year TEXT,
+                    duration TEXT,
+                    genre TEXT,
+                    rating TEXT,
+                    movie_url TEXT
+                );
+            ''')
+            self.connection.commit()
+        except sqlite.OperationalError:
+            pass
 
     def close_spider(self, spider):
         self.connection.close()
