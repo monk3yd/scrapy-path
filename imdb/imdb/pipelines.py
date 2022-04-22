@@ -49,7 +49,7 @@ class SQLlitePipeline(object):
                 );
             ''')
             self.connection.commit()
-        except sqlite.OperationalError:
+        except sqlite3.OperationalError:
             pass
 
     def close_spider(self, spider):
