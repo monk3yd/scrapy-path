@@ -32,7 +32,7 @@ class QuotesSpider(scrapy.Spider):
             }
 
         # Next page
-        next_page = response.xpath("//li[@class='next']/a") 
+        next_page = response.xpath("//li[@class='next']/a")
         if next_page:
             absolute_url = f"http://quotes.toscrape.com/js/page/{self.page_num}/"
             self.page_num += 1
