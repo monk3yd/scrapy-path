@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import logging
 import pymongo
+import sqlite3
 
 
 class MongodbPipeline(object):
@@ -27,3 +28,41 @@ class MongodbPipeline(object):
         # Insert into db
         self.db[self.collection_name].insert(item)
         return item
+
+
+class SQLlitePipeline(object):
+
+    def open_spider(self, spider):
+        # Create db and table
+        self.connection = sqlite3.connect("imdb.db")
+        self.db = self.connection.cursor()
+        self.db.execute('''
+            CREATE TABLE best_movies(
+                title TEXT,
+                year TEXT,
+                duration TEXT,
+                genre TEXT,
+                rating TEXT,
+                movie_url TEXT
+            );
+        ''')
+        self.connection.commit()
+
+    def close_spider(self, spider):
+        self.connection.close()
+
+    def process_item(self, item, spider):
+        # Insert into db
+        self.db.execute('''
+            INSERT INTO best_movies (title, year, duration, genre, rating, movie_url) VALUES (?, ?, ?, ?, ?, ?)
+        ''', (
+            item["title"],
+            item["year"],
+            item["duration"],
+            item["genre"],
+            item["rating"],
+            item["movie_url"]
+        ))
+        self.connection.commit()
+        return item
+
