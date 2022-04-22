@@ -1,0 +1,28 @@
+attrs @ file:///home/conda/feedstock_root/build_artifacts/attrs_1640799537051/work
+Automat==20.2.0
+bcrypt @ file:///home/conda/feedstock_root/build_artifacts/bcrypt_1610521165305/work
+certifi==2020.6.20
+cffi @ file:///home/conda/feedstock_root/build_artifacts/cffi_1625835287197/work
+constantly==15.1.0
+cryptography @ file:///home/conda/feedstock_root/build_artifacts/cryptography_1616851478720/work
+cssselect==1.1.0
+hyperlink @ file:///home/conda/feedstock_root/build_artifacts/hyperlink_1610092164190/work
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1642433548627/work
+incremental @ file:///home/conda/feedstock_root/build_artifacts/incremental_1621907170877/work
+lxml @ file:///home/conda/feedstock_root/build_artifacts/lxml_1616532291993/work
+parsel @ file:///home/conda/feedstock_root/build_artifacts/parsel_1591122878042/work
+pyasn1==0.4.8
+pyasn1-modules==0.2.7
+pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1636257122734/work
+PyDispatcher==2.0.5
+PyHamcrest @ file:///home/conda/feedstock_root/build_artifacts/pyhamcrest_1639391367583/work
+pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1633192417276/work
+queuelib @ file:///home/conda/feedstock_root/build_artifacts/queuelib_1629994290383/work
+Scrapy==1.6.0
+selenium==3.141.0
+service-identity==18.1.0
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+Twisted @ file:///home/conda/feedstock_root/build_artifacts/twisted_1614695041138/work
+urllib3==1.26.9
+w3lib @ file:///home/conda/feedstock_root/build_artifacts/w3lib_1591173357158/work
+zope.interface @ file:///home/conda/feedstock_root/build_artifacts/zope.interface_1618486023037/work
