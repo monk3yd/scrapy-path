@@ -16,7 +16,7 @@ class MongodbPipeline(object):
 
     def open_spider(self, spider):
         # logging.warning("SPIDER OPENED FROM PIPELINE")
-        self.client = pymongo.MongoClient("")
+        self.client = pymongo.MongoClient("mongodb+srv://monk3yd:raftel12345@cluster0.z6pty.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         self.db = self.client["IMDB"]
 
     def close_spider(self, spider):
