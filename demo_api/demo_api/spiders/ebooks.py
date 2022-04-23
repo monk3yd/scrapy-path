@@ -1,17 +1,23 @@
 import scrapy
+from scrapy.exceptions import CloseSpider
+
 import json
 
 
 class EbooksSpider(scrapy.Spider):
     name = 'ebooks'
-    allowed_domains = ['openlibrary.org']
-    start_urls = ['https://openlibrary.org/subjects/picture_books.json?limit=12&offset=12']
 
-    def __init__(self):
-        CONST = 12
-        self.ebook_counter = CONST
+    INCREMENTED_BY = 12
+    offset = 0
+
+    allowed_domains = ['openlibrary.org']
+    start_urls = ['https://openlibrary.org/subjects/picture_books.json?limit=12']
 
     def parse(self, response):
+        # Serach error response (500 in this case) for knowing when reached last page
+        if response.status == 500:
+            raise CloseSpider("Reached last page...")
+
         resp = json.loads(response.body)
         ebooks = resp["works"]
         for ebook in ebooks:
@@ -19,12 +25,9 @@ class EbooksSpider(scrapy.Spider):
                 "title": ebook["title"],
                 "subject": ebook["subject"]
             }
-        if self.ebook_counter == CONST:
-            self.max_ebook_count = resp["ebook_count"]
 
-        if int(self.ebook_counter) <= self.max_ebook_count:
-            self.ebook_counter = str(int(self.ebook_counter) + CONST)
-            yield scrapy.Request(
-                url=f"https://openlibrary.org/subjects/picture_books.json?limit=12&offset={self.ebook_counter}",
-                callback=self.parse
-            )
+        self.offset += self.INCREMENTED_BY
+        yield scrapy.Request(
+            url=f"https://openlibrary.org/subjects/picture_books.json?limit=12&offset={self.offset}",
+            callback=self.parse
+        )
